@@ -17,16 +17,6 @@ $('form').on('submit',function(e){
   $('input').val('');
 });
 
-function noDuplicates(value){
-  var last = value.substr(-1);;
-  value = value.substring(0, value.length - 1);
-  console.log(value+"-"+last);
-  if(value.includes(last)){
-    return true;
-  }else{
-    return false;
-  }
-}
 function createNumber(){
   //create the hidden number
   var number = [];
@@ -45,12 +35,29 @@ function ramdonDigit(){
 }
 function validate(){
   if(user.length != 4){
-    $('span').addClass('error');
+    hasError(true);
     return false
   }else{
-    $('span').removeClass('error');
+    hasError(false);
     score();
     addRow();
+  }
+}
+function hasError(hasError){
+  if(hasError){
+    $('span').addClass('error');
+  }else{
+    $('span').removeClass('error');
+  }
+}
+function noDuplicates(value){
+  var last = value.substr(-1);;
+  value = value.substring(0, value.length - 1);
+  console.log(value+"-"+last);
+  if(value.includes(last)){
+    return true;
+  }else{
+    return false;
   }
 }
 function score(){
