@@ -8,7 +8,6 @@ console.log(hidden);
 $('input').keyup(function(){
   duplicates($(this).val()) ? hasError(true) : hasError(false);
 })
-
 $('form').on('submit',function(e){
   e.preventDefault();
   picas = 0;
@@ -22,6 +21,10 @@ $('form').on('submit',function(e){
     hasError(true);
   }
 });
+$('#overlayBody').on('click','button',function(e){
+  window.location.reload(true);
+});
+
 
 function createNumber(){
   //create the hidden number
@@ -51,6 +54,15 @@ function validLength(){
     return false;
   }
 }
+function duplicates(value){
+  var last = value.substr(-1);;
+  value = value.substring(0, value.length - 1);
+  if(value.includes(last)){
+    return true;
+  }else{
+    return false;
+  }
+}
 function hasError(hasError){
   if($('input').val() == ""){
     $('span').removeClass('error');
@@ -61,15 +73,6 @@ function hasError(hasError){
     }else{
       $('span').removeClass('error');
     }
-  }
-}
-function duplicates(value){
-  var last = value.substr(-1);;
-  value = value.substring(0, value.length - 1);
-  if(value.includes(last)){
-    return true;
-  }else{
-    return false;
   }
 }
 function score(){
@@ -90,6 +93,8 @@ function addRow(){
 }
 function win(){
   if(fijas == 4){
-    $('p').text('!!!YOU WIN¡¡¡');
+    var winmsg = Handlebars.compile($('#winmsg').html());
+    $('.overlay').fadeIn().show();
+    $('#overlayBody').append(winmsg)
   }
 }
