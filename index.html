@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Picas & fijas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+   <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+          <h1 class="text-center">Picas & Fijas</h1>
+          <p class="text-center">Ingrese <span>cuatro números diferentes</span> y oprima enter</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+          <form>
+            <div class="form-group">
+              <input type="number" class="form-control" placeholder="Ingrese cuatro numeros diferentes" onsubmit="validate()">
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th>Número</th>
+                <th>Picas</th>
+                <th>Fijas</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
+     <script src="app.js"></script>
+  </body>
+</html>
