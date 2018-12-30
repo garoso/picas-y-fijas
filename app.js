@@ -13,8 +13,13 @@ $('form').on('submit',function(e){
   picas = 0;
   fijas = 0;
   user = $('input').val();
-  validate();
-  $('input').val('');
+  if(validLength()){
+    $('input').val('');
+    score();
+    addRow();
+  }else{
+    hasError(true);
+  }
 });
 
 function createNumber(){
@@ -33,14 +38,16 @@ function ramdonDigit(){
   var n = Math.floor(Math.random() * 10);
   return n;
 }
-function validate(){
-  if(user.length != 4){
-    hasError(true);
-    return false
+function validate(validate){
+  if(!validate){
+    return false;
+  }
+}
+function validLength(){
+  if(user.length == 4){
+    return true
   }else{
-    hasError(false);
-    score();
-    addRow();
+    return false;
   }
 }
 function hasError(hasError){
@@ -49,12 +56,12 @@ function hasError(hasError){
   }else{
     if(hasError){
       $('span').addClass('error');
+      validate(false);
     }else{
       $('span').removeClass('error');
     }
-  }  
+  }
 }
-
 function duplicates(value){
   var last = value.substr(-1);;
   value = value.substring(0, value.length - 1);
