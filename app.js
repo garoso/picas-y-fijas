@@ -2,6 +2,7 @@ var hidden = createNumber();
 var user = 0;
 var picas = 0;
 var fijas = 0;
+var template = Handlebars.compile($('#table-row').html())
 console.log(hidden);
 
 $('input').keyup(function(){
@@ -84,7 +85,8 @@ function score(){
   }
 }
 function addRow(){
-  $('tbody').append("<tr><td>"+user+"</td><td>"+picas+"</td><td>"+fijas+"</td></tr>")
+  var result = {user:user,picas:picas,fijas:fijas};
+  $('tbody').append(template(result));
 }
 function win(){
   if(fijas == 4){
