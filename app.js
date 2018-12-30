@@ -4,6 +4,10 @@ var picas = 0;
 var fijas = 0;
 console.log(hidden);
 
+$('input').keyup(function(){
+  noDuplicates($(this).val());
+})
+
 $('form').on('submit',function(e){
   e.preventDefault();
   picas = 0;
@@ -13,6 +17,16 @@ $('form').on('submit',function(e){
   $('input').val('');
 });
 
+function noDuplicates(value){
+  var last = value.substr(-1);;
+  value = value.substring(0, value.length - 1);
+  console.log(value+"-"+last);
+  if(value.includes(last)){
+    return true;
+  }else{
+    return false;
+  }
+}
 function createNumber(){
   //create the hidden number
   var number = [];
