@@ -5,7 +5,7 @@ var fijas = 0;
 console.log(hidden);
 
 $('input').keyup(function(){
-  noDuplicates($(this).val());
+  duplicates($(this).val()) ? hasError(true) : hasError(false);
 })
 
 $('form').on('submit',function(e){
@@ -44,16 +44,20 @@ function validate(){
   }
 }
 function hasError(hasError){
-  if(hasError){
-    $('span').addClass('error');
-  }else{
+  if($('input').val() == ""){
     $('span').removeClass('error');
-  }
+  }else{
+    if(hasError){
+      $('span').addClass('error');
+    }else{
+      $('span').removeClass('error');
+    }
+  }  
 }
-function noDuplicates(value){
+
+function duplicates(value){
   var last = value.substr(-1);;
   value = value.substring(0, value.length - 1);
-  console.log(value+"-"+last);
   if(value.includes(last)){
     return true;
   }else{
