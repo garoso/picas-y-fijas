@@ -2,7 +2,6 @@ var hidden = createNumber();
 var user = 0;
 var picas = 0;
 var fijas = 0;
-var template = Handlebars.compile($('#table-row').html())
 console.log(hidden);
 
 $('input').keyup(function(){
@@ -22,10 +21,16 @@ $('form').on('submit',function(e){
   }
 });
 $('#overlayBody').on('click','button',function(e){
-  window.location.reload(true);
+  $('.overlay').fadeOut();
+  reestar();
 });
 
-
+function reestar(){
+  $('tbody').empty();
+  hidden = createNumber();
+  $('#overlayBody').empty();
+  console.log(hidden);
+}
 function createNumber(){
   //create the hidden number
   var number = [];
@@ -36,6 +41,7 @@ function createNumber(){
     }
   }
   return number.join('');
+  console.log(hidden);
 }
 function ramdonDigit(){
   //create a ramdon digit
@@ -88,13 +94,14 @@ function score(){
   }
 }
 function addRow(){
+  var template = Handlebars.compile($('#table-row').html());
   var result = {user:user,picas:picas,fijas:fijas};
   $('tbody').append(template(result));
 }
 function win(){
   if(fijas == 4){
     var winmsg = Handlebars.compile($('#winmsg').html());
-    $('.overlay').fadeIn().show();
-    $('#overlayBody').append(winmsg)
+    $('.overlay').fadeIn();
+    $('#overlayBody').append(winmsg);
   }
 }
