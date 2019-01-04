@@ -1,4 +1,4 @@
-var hidden = createNumber();
+var hidden =  createNumber();
 var user = 0;
 var picas = 0;
 var fijas = 0;
@@ -12,7 +12,7 @@ $('form').on('submit',function(e){
   picas = 0;
   fijas = 0;
   user = $('input').val();
-  if(validLength()){
+  if(validLength() && !(duplicates(user))){
     $('input').val('');
     score();
     addRow();
@@ -22,10 +22,10 @@ $('form').on('submit',function(e){
 });
 $('#overlayBody').on('click','button',function(e){
   $('.overlay').fadeOut();
-  reestar();
+  restart();
 });
 
-function reestar(){
+function restart(){
   $('tbody').empty();
   hidden = createNumber();
   $('#overlayBody').empty();
@@ -48,11 +48,6 @@ function ramdonDigit(){
   var n = Math.floor(Math.random() * 10);
   return n;
 }
-function validate(validate){
-  if(!validate){
-    return false;
-  }
-}
 function validLength(){
   if(user.length == 4){
     return true
@@ -61,13 +56,14 @@ function validLength(){
   }
 }
 function duplicates(value){
-  var last = value.substr(-1);;
-  value = value.substring(0, value.length - 1);
-  if(value.includes(last)){
-    return true;
-  }else{
-    return false;
+  for(var i = 0; i <= value.length; i++) {
+      for(var j = i+1; j <= value.length; j++) {
+          if(value[j] == value[i]) {
+              return true;
+          }
+      }
   }
+  return false;
 }
 function hasError(hasError){
   if($('input').val() == ""){
@@ -75,7 +71,6 @@ function hasError(hasError){
   }else{
     if(hasError){
       $('span').addClass('error');
-      validate(false);
     }else{
       $('span').removeClass('error');
     }
